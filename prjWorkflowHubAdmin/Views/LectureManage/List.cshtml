@@ -1,0 +1,76 @@
+﻿@model IEnumerable<prjWorkflowHubAdmin.ViewModels.LectureAndPublisher.LectureManageViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+<h1>講座紀錄表</h1>
+<p>
+    @using (Html.BeginForm())
+    {
+        @:關鍵字 @Html.TextBox("txtKeyword") <input type="submit" value="查詢" class="btn btn-primary">
+    }
+<p>
+<p>
+    <a asp-action="Create" class=" btn btn-primary">新增講座紀錄</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           @*<th>
+                @Html.DisplayNameFor(model => model.FLecRecordId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FLectureId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FMemberId)
+            </th> *@
+            <th>
+                @Html.DisplayNameFor(model => model.FLecName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPhone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FEmail)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          @*<td>
+                @Html.DisplayFor(modelItem => item.FLecRecordId)
+                </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FLectureId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FMemberId)
+            </td> *@
+            <td>
+                @Html.DisplayFor(modelItem => item.FLecName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FPhone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FEmail)
+            </td>
+                <td>
+                            @Html.ActionLink("修改", "Edit", "LectureManage", new { id = item.FLecRecordId }, 
+                            new { @class = "btn btn-secondary" }) |
+                            @Html.ActionLink("刪除", "Delete", "LectureManage", new { id = item.FLecRecordId },
+                             new { onclick = "return confirm('確定要刪除嗎?')", @class = "btn btn-danger" })
+                </td>
+        </tr>
+}
+    </tbody>
+</table>

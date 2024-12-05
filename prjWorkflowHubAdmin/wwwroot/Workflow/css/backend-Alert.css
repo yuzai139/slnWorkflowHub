@@ -1,0 +1,49 @@
+﻿/* 基本的 alert 框樣式 */
+.alert-notice {
+    position: fixed; /* 固定在視窗 */
+    top: 20px; /* 距離視窗頂部 */
+    right: 20px; /* 距離視窗右側 */
+    width: auto;
+    max-width: 300px; /* 限制最大寬度 */
+    height: auto;
+    padding: 10px 20px; /* 內邊距 */
+    margin: 10px; /* 外邊距 */
+    line-height: 1.8;
+    border-radius: 5px; /* 圓角 */
+    font-family: sans-serif;
+    font-weight: 400;
+    background-color: #EFF; /* 背景色 */
+    border: 1px solid #DEE; /* 邊框色 */
+    color: #9AA; /* 文字顏色 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 陰影效果 */
+    z-index: 1000; /* 保證顯示在最上層 */
+    opacity: 1; /* 初始透明度 */
+    transition: opacity 0.5s ease, top 0.5s ease; /* 添加動畫效果 */
+    display:flex;
+    justify-content:space-between;
+}
+
+    /* 當 alert 被關閉時的隱藏動畫 */
+    .alert-notice.hide {
+        opacity: 0; /* 透明度變為 0 */
+        top: 0; /* 上移出視窗 */
+    }
+
+/* 關閉按鈕 */
+.alert__close {
+    text-align: center;
+    margin: 4px 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+}
+
+.alert__close:hover {
+    color: #666; /* 當鼠標懸停時顏色變深 */
+}
+
+.alert-text {
+    display: flex;
+    align-items: center;
+}

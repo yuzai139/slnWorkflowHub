@@ -1,0 +1,335 @@
+﻿@{
+    <!--網頁標題-->
+    ViewData["Title"] = "編輯發佈者工作流程";
+    <!--空白頁面-->
+    Layout = "~/Views/Shared/_LayoutPubDiagram.cshtml";
+}
+
+<!--表單開始處-->
+<input type="hidden" id="sopId" value="@ViewData["SopId"]" />
+<input type="hidden" id="sopType" />
+<input type="hidden" id="sopMemberId" />
+<input type="hidden" id="publisherId" />
+<input type="hidden" id="diagramImagePath" />
+<input type="hidden" id="publishImagePath" />
+<input type="hidden" id="hiddenJobItem" />
+<input type="hidden" id="hiddenIndustry" />
+<input type="hidden" id="hiddenCompanySize" />
+<input type="hidden" id="releaseStatus" />
+<input type="hidden" id="isRelease" />
+
+
+<!-- nav bar -Start -->
+<div class="navbar-container">
+    <div class="navbar-left">
+
+        <div class="navbar-logo">
+            <a id="backToPubSopList" style="cursor:pointer;" title="回上頁">
+                <!-- 左側返回按鈕 -->
+                <img src="~/WorkflowDiagram/images/previous-page-icon.png" alt="previous-page" class="title-img">
+            </a>
+
+            <a id="backTohome" style="cursor:pointer;" title="回首頁">
+                <img src="~/WorkflowDiagram/images/logo-navbar.png" alt="logo" style="cursor: pointer;">
+            </a>
+
+        </div>
+
+        <div class="navbar-dram-name">
+            <div class="icon">
+                <img src="~/WorkflowDiagram/images/pubflow-dram-icon.png" alt="Icon"> <!-- 中間的圖標 -->
+            </div>
+            <p class="description" id="sopName"></p> <!-- 純顯示的工作流程名稱 -->
+        </div>
+        <div class="dropdown" style="float:left;">
+            <button class="dropbtn">
+                <img src="~/WorkflowDiagram/images/dropdown-nav.png" alt="dropdown">
+            </button>
+
+            <div class="dropdown-content" style="left:0;">
+                <!-- 重製畫布要把舊的圖檔刪除，才可以用 -->
+                <a href="#" id="reset-canvas" style="display:none">重置畫布</a>
+                <!-- 刪除工作流程 -->
+                <a href="#" id="deletePublisherSop">
+                    刪除此工作流程
+                </a>
+
+            </div>
+        </div>
+        <!-- 重置畫布按鈕 -->
+        <!-- <button type="button" class="navbar-button" id="reset-canvas">重置畫布</button>
+
+        <button type="button" class="navbar-button">刪除此工作流程</button> -->
+
+        <div class="save-dram">
+            <!-- 儲存 -->
+            <button type="button" class="navbar-button" id="save-diagram-button">儲存</button>
+            <!-- 發佈按鈕 -->
+            <button type="button" class="navbar-button" id="release-button">儲存並發佈</button>
+            <!-- 下架按鈕（初始隱藏） -->
+            <button type="button" class="navbar-button" id="removed-from-market" style="display: none;">下架工作流程</button>
+
+            <!-- 更新時間 開始 -->
+            <div style="display:flex; padding:0 20px; color:darkgray">
+                <span>發佈時間 : </span>
+                <span id="sopReleaseTime" style="padding:0 4px;"></span>
+            </div>
+            <!-- 更新時間 結束 -->
+        </div>
+
+    </div>
+    <!-- 測試-把電腦中圖片載入畫布 -->
+    <button type="button" class="navbar-button" id="load-image-button" style="display: none;">
+        測試-把電腦中圖片載入畫布(hide)
+    </button>
+    <div class="navbar-right">
+        <div class="dropdown" style="float:right;">
+            <button class="dropbtn-nopadding">
+                <img src="~/WorkflowDiagram/images/user-nav-box.png" alt="user">
+            </button>
+            <div class="dropdown-content">
+                <a href="http://localhost:4200/member/member-setting">
+                    會員中心
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- nav bar - End -->
+<!-- 左邊開始 -->
+<!-- Icon 按鈕，使用外部圖片作為圖標 -->
+<div class="icon-button-left" id="icon-button-left">
+    <img src="~/WorkflowDiagram/images/list.png" alt="icon"> <!-- 使用圖片作為icon -->
+</div>
+
+<!-- 左邊-表單，初始狀態下隱藏 -->
+<div class="form-container-left" id="form-container-left">
+
+
+    <div class="title-box">
+        <div class="title-img">
+            <img src="~/WorkflowDiagram/images/list.png" alt="list icon">
+            <p class="purple-title-p">工作流程設定</p>
+        </div>
+        <div class="close-button-left" id="close-form-button-left">
+            <img src="~/WorkflowDiagram/images/left-fold.png" alt="close"> <!-- 關閉按鈕的icon -->
+        </div>
+    </div>
+
+    <div class="scrollerbar-straignt">
+        <div class="form-group">
+            <label class="text-label">*工作流程名稱</label>
+            <input type="text" placeholder="範例: 前端工程師的每日工作流程" id="inputSopName">
+        </div>
+        <!-- modal buitton start -->
+        <div class="form-group">
+            <div style="display:flex">
+                <span style="margin-right:2px">*職業 :</span>
+                <label id="jobName"></label>
+            </div>
+            <a class="modal-button" href="#popup1" style="text-align:center"> 選擇職業 </a>
+        </div>
+
+        <div class="form-group">
+            <div style="display:flex">
+                <span style="margin-right:2px">*行業 :</span>
+                <label id="industryName"></label>
+            </div>
+            <a class="modal-button" href="#popup2" style="text-align:center"> 選擇行業 </a>
+        </div>
+        <!-- modal buitton end -->
+
+        <div class="form-group">
+            <label class="text-label">公司規模</label>
+            <select id="companySizeSelect" class="select-commond">
+                <option>請選擇</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="text-label">所屬部門</label>
+            <input type="text" id="sopDepartment">
+        </div>
+
+        <div class="form-group">
+            <label class="text-label">服務對象</label>
+            <input type="text" placeholder="範例: 客戶" id="sopCustomer">
+        </div>
+
+        <div class="form-group">
+            <label class="text-label">營運模式</label>
+            <input type="text" placeholder="範例: 接案型" id="sopBusiness">
+        </div>
+
+        <p class="purple-title-p">販售設定</p>
+
+        <div class="form-group">
+            <label class="text-label">售價</label>
+            <input type="text"  id="sopPrice">
+        </div>
+
+        <div class="form-group">
+            <label class="text-label">販售點數</label>
+            <input type="text" id="salePoints">
+        </div>
+
+        <!-- 複製分享連結按鈕，默認隱藏 -->
+        <button type="button" class="navbar-button" id="copy-link-button" style="display: none;">
+            <img src="~/WorkflowDiagram/images/link.png" alt="copylink">
+            <span>複製分享連結</span>
+        </button>
+
+        <button type="button" class="navbar-button" id="download-button" style="display: none;">
+            <img src="~/WorkflowDiagram/images/downloadPng.png" alt="downloadPng">
+            <span>下載流程圖圖檔</span>
+        </button>
+
+        <button type="button" class="navbar-button" id="fake-info-publisher">
+            Demo
+        </button>
+
+    </div>
+    <!-- 滾動區域 結束 -->
+
+</div>
+<!-- 左邊結束 -->
+<!-- ============================= -->
+<!-- 右邊開始 -->
+<!-- 右邊 Icon 按鈕，使用外部圖片作為圖標 -->
+<div class="icon-button-right" id="icon-button-right">
+    <img src="~/WorkflowDiagram/images/edit.png" alt="icon"> <!-- 使用圖片作為icon -->
+</div>
+<!-- 右邊-表單，初始狀態下隱藏 -->
+<div class="form-container-right" id="form-container-right">
+    <div class="title-box">
+        <div class="title-img">
+            <img src="~/WorkflowDiagram/images/edit.png" alt="edit icon">
+            <p class="purple-title-p">發佈內容說明、縮圖上傳</p>
+        </div>
+        <div class="close-button-right" id="close-form-button-right">
+            <img src="~/WorkflowDiagram/images/right-fold.png" alt="close"> <!-- 關閉按鈕的icon -->
+        </div>
+    </div>
+    <div class="scrollerbar-straignt">
+        <div class="form-group">
+            <label class="text-label">*工作流程說明</label>
+            <textarea placeholder="請輸入此份工作流程文件的說明"
+                      maxlength="3000" class="textarea-description"
+                      id="sopDescription"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="text-label" ">*發佈內容說明</label>
+            <textarea placeholder="請輸入發佈內容說明 (最多3000字元)，此內容將顯示在商品頁作為商品介紹。"
+                      maxlength="3000" class="textarea-description"
+                      id="pubContent"></textarea>
+        </div>
+
+        <!-- 圖片上傳區域 -->
+        <div class="upload-image-container">
+            <p  style="margin:0, 8px, 0, 0">*上傳工作流程商品圖</p>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <img id="thumbnail-preview" style="height: 125px; display: none;" class="img-rounded thumb" />
+                </div>
+                <div class="col-md-6">
+                    <input type="file" id="file-input" accept="image/*" style="display: none;" />
+                    <button id="select-image-button" class="btn">選擇圖片</button>
+                </div>
+            </div>
+        </div>
+
+        <!--附件上傳 - 開始 -->
+        <div class="form-group">
+            <label class="text-label">附件上傳</label>
+            <input type="file" id="file-upload" multiple accept=".doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png" style="display: none;">
+            <div style="display:flex; justify-content:space-between">
+                <button type="button" id="select-files-btn" class="upload-btn">重新上傳附件</button>
+            </div>
+            <span class="file-type-info">(word、pdf、excel、ppt、jpg、png, 每個最多20MB，最多上傳5個)</span>
+            <div id="file-list" class="file-list"></div>
+        </div>
+        <!--附件上傳 - 結束 -->
+    </div>
+</div>
+<!-- 右邊結束 -->
+<!-- /form -->
+<!-- 表單結束 -->
+<!--=========================================-->
+<!--modal - 職業開始-->
+<div id="popup1" class="modal-overlay">
+    <div class="modal-popup">
+        <!-- 彈出窗口標題 -->
+        <h2>請選擇職業</h2>
+        <!-- 關閉彈出窗口的按鈕，點擊後返回主頁，隱藏彈出窗口 -->
+        <a class="close" href="#" id="closejobButton">&times;</a>
+        <!-- 彈出窗口內容區 -->
+        <div class="content">
+            <div class="form-group">
+                <label for="category1">職業類型</label>
+                <select id="category1" class="select-box">
+                    <option>請選擇</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="subCategoryGroup" style="display: none; margin:16px 0">
+                <label for="category2">職業細項</label>
+                <select id="category2" class="select-box">
+                    <option>請選擇</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="jobGroup" style="display: none;">
+                <label>職業</label>
+                <select id="category3" class="select-box">
+                    <option>請選擇</option>
+                </select>
+            </div>
+
+            <!-- 新增「確定」按鈕 -->
+            <div class="modal-button-div">
+                <button class="button-73" id="submitJobButton">
+                    確定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal職業結束-->
+<!--modal行業開始-->
+<div id="popup2" class="modal-overlay">
+    <div class="modal-popup">
+        <h2>請選擇行業</h2>
+        <a class="close" href="#" id="closeIndustryButton">&times;</a>
+        <div class="content">
+            <div class="form-group">
+                <label for="IndustryCate">行業類型</label>
+                <select id="IndustryCate" class="select-box">
+                    <option>請選擇</option>
+                </select>
+            </div>
+
+            <div class="form-group" id="industryGroup" style="display: none; margin:16px 0">
+                <label for="industry">行業</label>
+                <select id="industry" class="select-box">
+                    <option>請選擇</option>
+                </select>
+            </div>
+
+            <!-- 行業確定按鈕 -->
+            <div class="modal-button-div">
+                <button class="button-73" id="submitIndustry">
+                    確定
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal行業結束-->
+
+
+
+<script type="module" src="@Url.Content("~/workflowdiagram/forms/form-hyperlink.js")"></script>
+<script type="module" src="@Url.Content("~/workflowdiagram/forms/form-delete.js")"></script> <!--刪除可以共用-->
+
+

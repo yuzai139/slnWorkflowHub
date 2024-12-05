@@ -1,0 +1,6 @@
+@apiWorkflowHub_HostAddress = http://localhost:5214
+
+GET {{apiWorkflowHub_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

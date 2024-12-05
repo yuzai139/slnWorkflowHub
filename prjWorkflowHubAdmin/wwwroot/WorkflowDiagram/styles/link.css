@@ -1,0 +1,34 @@
+@import url(commond-form.css);
+@import url(formleft-publisher.css);
+@import url(formright-publisher.css);
+@import url(diagram-shap.css);
+@import url(diagram-modal.css);
+@import url(upload-file.css);
+@import url(upload-mutiple-files.css);
+
+/* 設置 html, body 和 #diagram 元素的高度和寬度為 100%，取消邊距，禁止用戶選擇文本 */
+html,
+body,
+#diagram {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    user-select: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 設定全局字體 */
+    font-size: 16px; /* 設定全局字體大小 */
+    color: rgb(73, 80, 87); /* 設定全局字體顏色 */
+    outline: none; /* 取消元素的外邊框 */
+}
+
+/* 設定 a 標籤的顏色和文本下劃線樣式 */
+a {
+    color: #0d6efd; /* 設定超連結顏色 */
+    text-decoration: underline; /* 設定超連結為下劃線 */
+}
+
+/* 媒體查詢：當屏幕寬度小於 700px 時，隱藏 class 為 links 的元素 */
+@media only screen and (max-width: 700px) {
+    .links {
+        display: none;
+    }
+}

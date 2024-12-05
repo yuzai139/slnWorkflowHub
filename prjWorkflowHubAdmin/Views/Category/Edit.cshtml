@@ -1,0 +1,60 @@
+﻿@model prjWorkflowHubAdmin.ContextModels.TArticle
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>修改文章</h2>
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert('文章名稱或內容不得為空');
+    </script>
+}
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FArticleId" class="control-label" style="display:none;"></label>
+                <input asp-for="FArticleId" class="form-control" style="display:none;" />
+                <span asp-validation-for="FArticleId" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="FArticleName" class="control-label"></label>
+                @Html.TextAreaFor(model => model.FArticleName, new { @class = "form-control", rows = 2 })
+                <span asp-validation-for="FArticleName" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="FArticleContent" class="control-label"></label>
+                @Html.TextAreaFor(model => model.FArticleContent, new { @class = "form-control", rows = 6 })
+                <span asp-validation-for="FArticleContent" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <div class="d-flex justify-content-end">
+                    <div class="col-auto  me-2">
+                        <input type="submit" value="儲存修改" class="btn btn-outline-primary" />
+                    </div>
+                    <div class="col-auto">
+                        <input type="hidden" asp-for="FCategoryNumber" />
+                        
+                        @Html.ActionLink("回到清單", "Details", "Category",
+                                 new { id = Model.FCategoryNumber }, new { @class = "btn btn-outline-warning" })
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

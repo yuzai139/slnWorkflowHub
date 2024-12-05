@@ -1,0 +1,149 @@
+/* 右邊 Icon 按鈕 */
+.icon-button-right {
+	width: 56px;
+	height: 56px;
+	background-color: #EFF7F7;
+	border-radius: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	right: 24px;
+	top: 104px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+/* 右邊 Icon 按鈕hover顏色 */
+	.icon-button-right:hover {
+		box-shadow: 0px 4px 10.9px rgba(149, 141, 165, 0.3);
+	}
+
+/* 右邊懸浮 Icon 按鈕圖像 */
+.icon-button-right img {
+	width: 24px;
+	height: 24px;
+}
+
+/* 右邊關閉按鈕圖片 */
+.close-button-right img {
+	width: 32px;
+	height: 32px;
+}
+
+/* 右側的關閉按鈕樣式 */
+.close-button-right {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+}
+
+/* 右邊表單容器，初始狀態隱藏 */
+.form-container-right {
+	display: none;
+	width: 400px;
+	background-color: #EFF7F7;
+	border-radius: 16px; /* 改為16px */
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	position: fixed;
+	right: 24px;
+	top: 104px;
+	bottom: 24px; /* 距離視窗底部 24px */
+	z-index: 10; /* 確保表單顯示在最上層 */
+}
+
+/* 右邊表單內部滾動容器 */
+.scrollerbar-straignt {
+	display: flex; /* gap 屬性僅適用於 flex 容器 或 grid 容器*/
+	flex-direction: column; /* 使其內容垂直排列 */
+	overflow-y: auto; /* 當內容超出容器高度時顯示垂直滾動條 */
+	padding: 0;
+	margin: 0;
+	gap: 16px; /* 添加 gap 來控制內部元素間距 */
+}
+
+/* ================== */
+
+/* 工作流程描述 */
+.textarea-description{
+	width: auto;
+	height: 506px;
+	resize: none;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 170%; 
+	letter-spacing: 1.40px;
+	border-radius: 4px;
+	text-align: left; /* 更改為左對齊，符合一般輸入習慣 */
+	background-color: #fff; /* 設置背景為白色 */
+    color: #000; /* 設置文字顏色為黑色，這樣可以看到輸入的文字 */
+	caret-color: #000; /* 設置光標為黑色 */
+	overflow-y: auto; /* 當內容超出高度時顯示垂直滾動條 */
+	margin-bottom: 16px; /* 跟下方元素拉開距離 */
+	padding: 8px; /* 特別設定 */
+
+}
+
+.upload-thumbnail-container{
+	display: flex;
+	gap: 16px; 
+}
+
+/* 縮圖預覽容器 */
+.thumbnail-preview {
+    width: 200px;
+    height: 120px;
+    border: 2px dashed #8A2BE2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F7F2FA;
+    border-radius: 8px;
+    overflow: hidden;
+	margin-bottom: 12px;
+}
+
+.thumbnail-preview img {
+    width: 100%;
+    height: auto;
+}
+
+/* 上傳按鈕樣式 */
+.upload-button {
+    background-color: #E0DAEF;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #8A2BE2;
+}
+
+.upload-button:hover {
+    background-color: #D1C4E9;
+}
+
+/* 重新上傳按鈕樣式 */
+.reupload-button {
+	font-size: 14px;
+    background:transparent;
+    border: none;
+    color: #8A2BE2;
+    cursor: pointer;
+	display: none;
+	padding: 8px;
+}
+.thumbnail-button-box{
+	width:fit-content ;
+	height: fit-content;
+    align-items: center; 
+    gap: 8px; 
+	margin-bottom: 16px;
+}
+

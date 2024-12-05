@@ -1,0 +1,70 @@
+﻿@model IEnumerable<prjWorkflowHubAdmin.ViewModels.LectureAndPublisher.PublisherViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>發布者管理</h1>
+<p>
+    @using (Html.BeginForm())
+    {
+        @:關鍵字 @Html.TextBox("txtKeyword") <input type="submit" value="查詢" class="btn btn-primary">
+    }
+<p>
+<p>
+    <a asp-action="Create" class="btn btn-primary">新增發布者</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                序號
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPubName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fMemberName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FPubDescription)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.FPubImage)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int count = 0;
+            foreach (var item in Model)
+            {
+                count++;
+                <tr>
+                <td>
+                    @count
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FPubName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fMemberName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FPubDescription)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.FPubImage)
+                </td>*@
+                <td>
+                    @Html.ActionLink("修改", "Edit", "Publisher", new { id = item.FPublisherId },
+                             new { @class = "btn btn-secondary" }) |
+                    @Html.ActionLink("刪除", "Delete", "Publisher", new { id = item.FPublisherId },
+                             new { onclick = "return confirm('確定要刪除嗎?')", @class = "btn btn-danger" })
+                </td>
+            </tr>
+            }
+        }
+    </tbody>
+</table>

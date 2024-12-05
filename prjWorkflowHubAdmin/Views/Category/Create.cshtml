@@ -1,0 +1,32 @@
+﻿@model prjWorkflowHubAdmin.ContextModels.TArticle
+
+@{
+    ViewData["Title"] = "新增文章";
+}
+
+<h2>新增文章</h2>
+@if (TempData["ErrorMessage"] != null)
+{
+    <script>
+        alert('文章名稱或內容不得為空');
+    </script>
+}
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="FArticleName">文章名稱</label>
+        <input type="text" class="form-control" id="FArticleName" name="FArticleName" value="@Model?.FArticleName" />
+    </div>
+    <br />
+    <div class="form-group">
+        <label for="FArticleContent">文章內容</label>
+        <textarea class="form-control" id="FArticleContent" name="FArticleContent">@Model?.FArticleContent</textarea>
+    </div>
+    <br />
+
+    <input type="hidden" asp-for="FCategoryNumber" value="@ViewBag.FCategoryNumber" />
+
+    <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-outline-primary me-2 ">儲存</button>
+        <a asp-action="Details" asp-route-id="@ViewBag.FCategoryNumber" class="btn btn-outline-warning">返回類別</a>
+    </div>
+</form>

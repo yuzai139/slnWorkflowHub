@@ -1,0 +1,113 @@
+﻿@model IEnumerable<prjWorkflowHubAdmin.ViewModels.LectureAndPublisher.LectureViewModel>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>講座一覽表</h1>
+<p>
+    @using (Html.BeginForm())
+    {
+        @:關鍵字 @Html.TextBox("txtKeyword") <input type="submit" value="查詢" class="btn btn-primary">
+    }
+<p>
+<p>
+    <a asp-action="Create" class=" btn btn-primary">新增講座</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                序號
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FLecName)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FPubName)
+            </th>
+                    @* <th>
+            @Html.DisplayNameFor(model => model.FLecImage)
+            </th> *@
+            <th>
+                        @Html.DisplayNameFor(model => model.FLecPrice)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FLecPoints)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FLecDate)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FLecDescription)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FOnline)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FLecLocation)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FLecLimit)
+            </th>
+            <th>
+                        @Html.DisplayNameFor(model => model.FLink)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+                @{
+                    int count = 0;
+                    foreach (var item in Model)
+                    {
+                        count++;
+                <tr>
+                    <td>
+                                @count
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLecName)
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FPubName)
+                    </td>
+                            @*<td>
+            @Html.DisplayFor(modelItem => item.FLecImage)
+            </td>*@
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLecPrice)
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLecPoints)
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLecDate)
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLecDescription)
+                    </td>
+                    <td>
+                                @(item.FOnline?"線上":"線下")
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLecLocation)
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLecLimit)
+                    </td>
+                    <td>
+                                @Html.DisplayFor(modelItem => item.FLink)
+                    </td>
+                    <td>
+                                @Html.ActionLink("修改", "Edit", "Lecture", new { id = item.FLectureId }, new { @class = "btn btn-secondary" })
+                    </td>
+                    <td>
+                                @Html.ActionLink("刪除", "Delete", "Lecture", new { id = item.FLectureId },
+                                     new { onclick = "return confirm('確定要刪除嗎?')", @class = "btn btn-danger" })
+                    </td>
+                </tr>
+                    }
+                }
+    </tbody>
+</table>

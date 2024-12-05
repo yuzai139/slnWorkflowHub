@@ -1,0 +1,62 @@
+﻿@model prjWorkflowHubAdmin.ContextModels.TCategory
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>@Model.FCategoryName 的詳細資料</h2>
+
+<p>
+    @using (Html.BeginForm())
+    {
+
+        @:關鍵字 @Html.TextBox("txtKeyword") <input type="submit" value="查詢" />
+    }
+
+</p>
+<div>
+    @Html.ActionLink("新增文章", "Create", "Category", new { fCategoryNumber = Model.FCategoryNumber },
+            new { style = "color: #FF00FF; " })
+</div>
+<hr />
+
+<h3>文章清單</h3>
+
+
+@if (ViewBag.Articles != null && ViewBag.Articles.Count > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>文章編號</th>
+                <th>文章名稱</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var article in ViewBag.Articles)
+            {
+                <tr>
+                    <td>@article.FArticleId</td> 
+                    <td>@article.FArticleName</td>
+                    <td>
+                        <span style="color: #green;">
+                            @Html.ActionLink("修改", "Edit", "Category", new { id = article.FArticleId }, new { style = "color:  green;" })
+                        </span>
+                        <span style="margin-left: 15px;">
+                            @Html.ActionLink("刪除", "Delete", "Category", new { id = article.FArticleId },
+                                     new { style = "color: red;", onclick = "return confirm('確定要刪除嗎?')" })
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>這個類別目前沒有任何文章。</p>
+}
+
+<p>
+    @Html.ActionLink("回到清單", "ForumIndex", "Forum", null, new { style = "color: orange; " })
+</p>

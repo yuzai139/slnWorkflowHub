@@ -1,0 +1,179 @@
+﻿/* 按鈕樣式 */
+.modal-button {
+    /* 字體大小 */
+    font-size: 1em;
+    /* 內邊距 */
+    padding: 10px;
+    /* 字體顏色 */
+    color: #2c1919;
+    /* 邊框樣式 */
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+    /* 圓角邊框 */
+    border-radius: 24px;
+    /* 移除文字裝飾 */
+    text-decoration: none;
+    /* 滑鼠指針顯示為指示符 */
+    cursor: pointer;
+    /* 添加過渡效果，鼠標懸停時顏色變化 */
+    transition: all 0.3s ease-out;
+    margin: 8px;
+}
+    /* 當鼠標懸停在按鈕上時的樣式 */
+    .modal-button:hover {
+        /* 改變背景顏色為綠色 */
+        background: #9FE0E0;
+    }
+
+/* 彈出窗口遮罩樣式 */
+.modal-overlay {
+    /* 全屏固定遮罩 */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* 半透明黑色背景 */
+    background: rgba(0, 0, 0, 0.7);
+    /* 過渡效果 */
+    transition: opacity 500ms;
+    /* 默認隱藏遮罩 */
+    visibility: hidden;
+    opacity: 0;
+    z-index: 20;
+}
+    /* 當啟用彈出窗口時，顯示遮罩 */
+    .modal-overlay:target {
+        /* 顯示遮罩 */
+        visibility: visible;
+        opacity: 1;
+    }
+
+/* 彈出窗口內容樣式 */
+.modal-popup {
+    /* 垂直居中 */
+    margin: 70px auto;
+    /* 內邊距 */
+    padding: 20px;
+    /* 背景顏色為白色 */
+    background: #fff;
+    /* 圓角 */
+    border-radius: 5px;
+    /* 寬度 */
+    width: 30%;
+    /* 相對定位，便於定位關閉按鈕 */
+    position: relative;
+    /* 過渡效果 */
+    transition: all 5s ease-in-out;
+    z-index: 30;
+}
+    /* 彈出窗口標題樣式 */
+    .modal-popup h2 {
+        /* 去除上邊距 */
+        margin-top: 0;
+        /* 字體顏色 */
+        color: #333;
+        /* 字體樣式 */
+        font-family: Tahoma, Arial, sans-serif;
+    }
+
+    /* 關閉按鈕樣式 */
+    .modal-popup .close {
+        /* 右上角定位 */
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        /* 過渡效果 */
+        transition: all 200ms;
+        /* 字體大小 */
+        font-size: 30px;
+        /* 字體粗細 */
+        font-weight: bold;
+        /* 去除文字裝飾 */
+        text-decoration: none;
+        /* 字體顏色 */
+        color: #333;
+    }
+        /* 當鼠標懸停在關閉按鈕上時的樣式 */
+        .modal-popup .close:hover {
+            /* 改變字體顏色為綠色 */
+            color: #06D85F;
+        }
+
+    /* 彈出窗口內容區域樣式 */
+    .modal-popup .content {
+        /* 最大高度為30% */
+        max-height: 30%;
+        /* 如果內容超出高度則顯示滾動條 */
+        overflow: auto;
+    }
+
+/* 響應式調整 */
+@media screen and (max-width: 700px) {
+    /* 在小屏幕上調整框和彈出窗口的寬度 */
+    .modal-box {
+        width: 70%;
+    }
+
+    .modal-popup {
+        width: 70%;
+    }
+}
+
+
+.select-box {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+/* button CSS */
+/* CSS */
+.button-73 {
+    appearance: none;
+    background-color: #FFFFFF;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -.24px;
+    margin: 8px 0;
+    outline: none;
+    padding: 1rem 1.3rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-73:hover {
+    background-color: #FFC229;
+    box-shadow: #FF6314 0 -6px 8px inset;
+    transform: scale(1.125);
+}
+
+.button-73:active {
+    transform: scale(1.025);
+}
+
+
+@media (min-width: 768px) {
+    .button-73 {
+        font-size: 1.5rem;
+        padding: .75rem 2rem;
+    }
+}
+.modal-button-div {
+    display: flex;
+    justify-content: center; /* 水平置中 */
+}

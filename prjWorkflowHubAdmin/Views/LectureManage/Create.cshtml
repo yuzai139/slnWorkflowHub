@@ -1,0 +1,70 @@
+﻿@model prjWorkflowHubAdmin.ViewModels.LectureAndPublisher.LectureManageViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>新增講座報名紀錄</h1>
+
+<h4>輸入報名紀錄</h4>
+<p>@ViewBag.Message</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FLectureId" class="control-label"></label>
+                <input asp-for="FLectureId" class="form-control" />
+                <span asp-validation-for="FLectureId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FLecName" class="control-label"></label>
+                <input asp-for="FLecName" class="form-control" />
+                <span asp-validation-for="FLecName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FMemberId" class="control-label"></label>
+                <input asp-for="FMemberId" class="form-control" />
+                <span asp-validation-for="FMemberId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FName" class="control-label"></label>
+                <input asp-for="FName" class="form-control" />
+                <span asp-validation-for="FName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FPhone" class="control-label"></label>
+                <input asp-for="FPhone" class="form-control" />
+                <span asp-validation-for="FPhone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FEmail" class="control-label"></label>
+                <input asp-for="FEmail" class="form-control" />
+                <span asp-validation-for="FEmail" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="確認" class="btn btn-primary" />
+                <button type="button" id="demo" class="btn btn-primary">Demo</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">取消新增</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById("demo").addEventListener("click", function () {
+            document.getElementById("FLecName").value = "成功致富";
+            document.getElementById("FName").value="Marco";
+            document.getElementById("FPhone").value = "0963258741";
+            document.getElementById("FEmail").value = "marco@gmail.com";
+            document.getElementById("FLectureId").value = "1";
+            document.getElementById("FMemberId").value = "1";
+        })
+    </script>
+}

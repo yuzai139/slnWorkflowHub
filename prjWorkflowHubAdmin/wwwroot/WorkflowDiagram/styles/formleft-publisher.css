@@ -1,0 +1,82 @@
+/* 左邊 Icon 按鈕 */
+.icon-button-left {
+	width: 56px;
+	height: 56px;
+	background-color: #EFF7F7;
+	border-radius: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	left: 24px;
+	top: 104px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+/* 左邊 Icon 按鈕hover顏色 */
+	.icon-button-left:hover {
+		box-shadow: 0px 4px 10.9px rgba(149, 141, 165, 0.3);
+	}
+
+/* 左邊懸浮 Icon 按鈕圖像 */
+.icon-button-left img {
+	width: 24px;
+	height: 24px;
+}
+
+/* 左邊關閉按鈕圖片 */
+.close-button-left img {
+	width: 32px;
+	height: 32px;
+}
+/* 左邊關閉按鈕的位置與樣式 */
+.close-button-left {
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	width: 44px;
+	height: 44px;
+	cursor: pointer;
+}
+
+
+/* 左邊表單容器，初始狀態隱藏 */
+.form-container-left {
+	display: none;
+	width: 360px;
+	background-color: #EFF7F7;
+	border-radius: 16px; /* 更改為 16px */
+	padding: 24px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	position: fixed; /* 更改為 fixed 來固定相對於視窗的位置 */
+	left: 24px; /* 保持距離左側 24px */
+	top: 104px; /* 距離視窗頂部 104px */
+	bottom: 24px; /* 距離視窗底部 24px */
+	z-index: 10; /* 確保表單顯示在最上層 */
+}
+
+.scrollerbar-straignt {
+	display: flex; /* gap 屬性僅適用於 flex 容器 或 grid 容器*/
+	flex-direction: column; /* 使其內容垂直排列 */
+	overflow-y: auto; /* 當內容超出容器高度時顯示垂直滾動條 */
+	padding: 0;
+	margin: 0;
+	gap: 16px; /* 添加 gap 來控制內部元素間距 */
+}
+
+/* 按鈕內部圖片樣式 */
+.trash-button img {
+    width: 24px;
+    height: 24px;
+}
+.sale-settings {
+	display: flex; /* gap 屬性僅適用於 flex 容器 或 grid 容器*/
+	flex-direction: column; /* 使其內容垂直排列 */
+	padding: 0;
+	margin: 0;
+	gap: 16px; /* 添加 gap 來控制內部元素間距 */
+}
+

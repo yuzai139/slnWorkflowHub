@@ -1,0 +1,83 @@
+﻿@{
+	var errorMessage = TempData["ErrorMessage"] as string;
+}
+<!DOCTYPE html>
+<html lang="en"
+	  class="light-style layout-menu-fixed"
+	  dir="ltr"
+	  data-theme="theme-default"
+	  data-assets-path="~/assets/"
+	  data-template="vertical-menu-template-free">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>@ViewData["Title"] - 職業搞定王</title>
+	<!--模板開始-->
+	<!-- Favicon -->
+	<link rel="icon" type="image/x-icon" href="~/WorkflowDiagram/favicon/favicon-green.ico" />
+	<!--WorkflowDiagram 開始-->
+	<link rel="stylesheet" href="~/WorkflowDiagram/styles/link.css" /> <!--連結到自己的link表-->
+	<link rel="stylesheet" href="~/Workflow/css/Workflow-styles-link.css" /> <!--連結到自己的後端警告css-->
+	<script src="~/WorkflowDiagram/forms/form-main.js" defer type="module"></script><!-- 加載js表單主檔案 -->
+	<!--WorkfowDiagram 結束-->
+	<!--模板結束-->
+</head>
+<body>
+	<!-- nav bar 由各個頁面自行決定 -->
+	<!-- 自定義元素 ap-menu，可能是由 JavaScript 定義的自定義 Web 元素 -->
+	<ap-menu id="menu"></ap-menu>
+
+	<!-- 自定義元素 ap-menu-shape -->
+	<ap-menu-shape id="menu-shape"></ap-menu-shape>
+	<!-- 顯示提示信息的 div -->
+	<div id="tip" style="position: fixed; left: 50%; top: 30%; transform: translate(-50%, -30%); min-width: 290px;">
+		<!-- 使用 SVG 圖標來顯示提示 -->
+		<svg viewBox="0 0 24 24" width="24" height="24">
+			<path fill="none" d="M0 0h24v24H0z" /> <!-- 清除背景的矩形 -->
+			<path d="M10 3h4a8 8 0 1 1 0 16v3.5c-5-2-12-5-12-11.5a8 8 0 0 1 8-8zm2 14h2a6 6 0 1 0 0-12h-4a6 6 0 0 0-6 6c0 3.61 2.462 5.966 8 8.48V17z"
+				  fill="rgba(3, 150, 150, 100)" /> <!-- 畫出提示圖標 -->
+		</svg>小提示 <!-- 提示文字 -->
+		<ul>
+			<li>從下方菜單拖放圖案到畫布中</li> <!-- 提示拖放圖像打開 -->
+			<li>點擊畫布中的圖案可以連線</li>
+			<li>雙擊畫布中的圖案可以刪除</li> <!-- 提示雙擊畫布中的圖案可以刪除 -->
+		</ul>
+	</div>
+	<!--Navbar End-->
+	@RenderBody()
+	<!-- 定義主圖表區域，設定一些樣式 -->
+	<svg id="diagram" tabindex="0" class="diagram">
+		<g id="canvas"></g> <!-- 定義圖表的畫布區域 -->
+	</svg>
+	<!--沒有footer-->
+
+	<!--後端警告 開始-->
+	<!-- 檢查 TempData 中是否有錯誤訊息，並顯示彈窗 -->
+	@if (!string.IsNullOrEmpty(errorMessage))
+	{
+		<div class="alert-notice" id="alert-box2">
+			<span class="alert-text">
+				@errorMessage
+				<br class="clear" />
+			</span>
+			<span class="alert__close" onclick="closeAlert()">X</span>
+		</div>
+	}
+	<!--後端警告 結束-->
+
+	<!--hidding-button->
+		<button id=>10</button>
+
+	<!--模板js開始-->
+	<!-- WorkflowDiagram 加載外部 JavaScript 模塊文件 -->
+	@* <script src="~/WorkflowDiagram/forms/index.js" type="module"></script> *@
+	<script type="module" src="@Url.Content("~/workflowdiagram/forms/index.js")"></script>
+	<script type="module" src="@Url.Content("~/workflowdiagram/forms/upload-file-publisher.js")"></script>
+	<script src="~/Workflow/js/js-link.js" type="module"></script> <!--載入Backend-Alert-->
+	<script type="module" src="@Url.Content("~/workflowdiagram/ui/publisher-canva-edit.js")"></script>
+	<script type="module" src="@Url.Content("~/workflowdiagram/ui/muti-file-upload.js")"></script>
+	<script src="~/WorkflowDiagram/forms/fake-info-publisher.js" type="module"></script> <!--Pub假資料-->
+	<!--模板js結束-->
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,92 @@
+﻿@model IEnumerable<prjWorkflowHubAdmin.ContextModels.TOrder>
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1 style="font-family:Consolas; text-align:center; font-weight:bold  ">訂單管理</h1>
+<hr />
+
+@using (Html.BeginForm())
+{
+    <div style="display:flex; justify-content:space-between ;  height: 50px;  ">
+
+        <a asp-action="Create" class="btn btn-dark" style="font-family:Consolas ; font-weight:bold  ; max-width: 500px;">新增訂單</a>
+        <p >
+        <span>快速搜尋</span>
+            @Html.TextBox("txtKeyword")
+        <input type="submit" value="查詢" style="text-align:right ; font-family:Consolas ; font-weight:bold" class="btn btn-dark" />
+        </p>
+</div>
+}
+<table class="table" style="font-family:Consolas ; font-weight:bold">
+    <thead>
+        <tr>
+            @* <th>
+                編號
+            </th> *@
+            <th>
+                @*  @Html.DisplayNameFor(model => model.FOrderId) *@
+                訂單編號
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.FMemberId) *@
+                會員編號
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.FTotalPrice) *@
+                總金額
+            </th>
+            <th>
+                @*   @Html.DisplayNameFor(model => model.FOrderDate) *@
+                訂單日期
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.FOrderStatus) *@
+                訂單狀態
+            </th>
+            <th>
+                @* @Html.DisplayNameFor(model => model.FPayment) *@
+                付款方式
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @{
+            int count = 0;
+            foreach (var item in Model)
+            {
+                count++;
+                <tr>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FOrderId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FMemberId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FTotalPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FOrderDate)
+                    </td>
+                    <td>
+                        @(item.FOrderStatus == true ? "完成" : "未完成")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FPayment)
+                    </td>
+                    <td>
+                        @Html.ActionLink("修改", "Edit", new { id = item.FOrderId }, new { Class = "btn btn-dark", style = "font-family:Consolas ; font-weight:bold" })
+                        @Html.ActionLink("詳細資料", "Details", new { id = item.FOrderId }, new { Class = "btn btn-dark", style = "font-family:Consolas ; font-weight:bold" })
+                        @Html.ActionLink("刪除", "Delete", new { id = item.FOrderId },
+                             new { onclick = "return confirm('確定要刪除嗎?')", Class = "btn btn-dark", style = "font-family:Consolas ; font-weight:bold" })
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

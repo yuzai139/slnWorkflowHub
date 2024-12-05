@@ -1,0 +1,57 @@
+﻿@model prjWorkflowHubAdmin.ContextModels.TOrderDetail
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1 style="font-family:Consolas; text-align:center ; font-weight:bold ">訂單詳細</h1>
+
+
+<hr />
+
+<div class="d-flex justify-content-center "  style="font-family:Consolas ; font-weight:bold">
+    @* <h4>TOrderDetail</h4> *@
+   
+    <dl class="row">
+        @* <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FOrdRecordId)
+
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FOrdRecordId)
+        </dd> *@
+        <dt class="col-sm-0">
+            @* @Html.DisplayNameFor(model => model.FOrderId) *@
+            訂單編號 :
+        </dt>
+        <dd class="col-sm-8"  >
+            @Html.DisplayFor(model => model.FOrderId)
+        </dd>
+        @* <dt class="col-sm-0" > *@
+            @* @Html.DisplayNameFor(model => model.FSopid) *@
+            @* SOP編號 : *@
+        @* </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.FSopid)
+        </dd>
+        <dt class = "col-sm-0"> *@
+            @* @Html.DisplayNameFor(model => model.FLectureId) *@
+            @* 講座編號 :
+        </dt>
+        <dd class = "col-sm-8">
+            @Html.DisplayFor(model => model.FLectureId)
+        </dd>*@
+        <dt class = "col-sm-0"> 
+            @Html.DisplayNameFor(model => model.FSubtotal)
+            小計 :
+        </dt>
+        <dd class = "col-sm-0">
+            @Html.DisplayFor(model => model.FSubtotal)
+        </dd>
+    </dl>
+</div>
+<hr />
+<div>
+    @* @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) | *@
+    <a asp-action="OrderIndex" class="btn btn-dark" style="font-family:Consolas ; font-weight:bold">返回訂單</a>
+</div>

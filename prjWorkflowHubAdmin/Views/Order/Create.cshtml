@@ -1,0 +1,69 @@
+﻿@model prjWorkflowHubAdmin.ContextModels.TOrder
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 style="font-family:Consolas; text-align:center ; font-weight:bold ">新增訂單</h1>
+
+@* <h4 style="font-family:Consolas; text-align:center ; font-weight:bold ">訂單輸入</h4> *@
+<hr />
+
+<div class="d-flex justify-content-center align-items-center" style="min-height: 50vh; font-family:Consolas ; font-weight:bold">
+    <div class="col-md-4 " >
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger" ></div>
+
+            <div class="form-group" >
+                <label asp-for="FOrderId" class="control-label" >訂單編號</label>
+                <input asp-for="FOrderId" class="form-control" />
+                <span asp-validation-for="FOrderId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FMemberId" class="control-label">會員編號</label>
+                <input asp-for="FMemberId" class="form-control" />
+                <span asp-validation-for="FMemberId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FTotalPrice" class="control-label">總金額</label>
+                <input asp-for="FTotalPrice" class="form-control" />
+                <span asp-validation-for="FTotalPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FOrderDate" class="control-label">訂單日期</label>
+                <input asp-for="FOrderDate" class="form-control" />
+                <span asp-validation-for="FOrderDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FOrderStatus" class="control-label">訂單狀態</label>
+                @{
+                    List<SelectListItem> list = new List<SelectListItem>
+                {
+                new SelectListItem { Text = "完成", Value = "true", Selected = true },
+                new SelectListItem { Text = "未完成", Value = "false" }
+                };
+                }
+                @Html.DropDownListFor(m => m.FOrderStatus, list, new { @class = "form-control" })
+            </div>
+            <div class="form-group">
+                <label asp-for="FPayment" class="control-label">付款方式</label>
+                <input asp-for="FPayment" class="form-control" />
+                <span asp-validation-for="FPayment" class="text-danger"></span>
+            </div>
+            <hr />
+            <div class="form-group">
+                <input type="submit" value="新增" class="btn btn-dark" style="font-family:Consolas ; font-weight:bold" />
+                <a asp-action="OrderIndex" type="button" class="btn btn-dark"
+                   style="font-family:Consolas ; font-weight:bold">取消新增</a>
+            </div>
+        </form>
+    </div>
+
+    
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

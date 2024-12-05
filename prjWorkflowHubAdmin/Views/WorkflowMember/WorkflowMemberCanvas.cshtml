@@ -1,0 +1,268 @@
+﻿@{
+    <!--網頁標題-->
+    ViewData["Title"] = "會員工作流程畫布";
+    <!--空白頁面-->
+    Layout = "~/Views/Shared/_LayoutDiagram.cshtml";
+}
+<!--內容頁開始處-->
+<!-- nav bar -Start -->
+<div class="navbar-container">
+    <div class="navbar-left">
+
+        <div class="navbar-logo">
+            <a href="#">
+                <!-- 左側返回按鈕 -->
+                <img src="~/WorkflowDiagram/images/previous-page-icon.png" alt="previous-page" class="title-img">
+            </a>
+            <img src="~/WorkflowDiagram/images/logo-navbar.png" alt="logo" style="cursor: pointer;">
+        </div>
+
+        <div class="navbar-dram-name">
+            <div class="icon">
+                <img src="~/WorkflowDiagram/images/workflow-dram-icon.png" alt="Icon"> <!-- 中間的圖標 -->
+            </div>
+            <p class="description">UIUX設計師的日常工作流程</p> <!-- 中間的文本描述 -->
+        </div>
+        <div class="dropdown" style="float:left;">
+            <button class="dropbtn">
+                <img src="~/WorkflowDiagram/images/dropdown-nav.png" alt="dropdown">
+            </button>
+
+            <div class="dropdown-content" style="left:0;">
+                <a href="#" id="reset-canvas">重置畫布</a>
+                <a href="#">刪除此工作流程</a>
+            </div>
+        </div>
+        <!-- 重置畫布按鈕 -->
+        <!-- <button type="button" class="navbar-button" id="reset-canvas">重置畫布</button>
+
+        <button type="button" class="navbar-button">刪除此工作流程</button> -->
+
+        <div class="save-dram">
+            <!-- 儲存 -->
+            <button type="button" class="navbar-button">儲存</button>
+        </div>
+
+    </div>
+    <!-- 測試-把電腦中圖片載入畫布 -->
+    <button type="button" class="navbar-button" id="load-image-button" style="display: none;">
+        測試-把電腦中圖片載入畫布(hide)
+    </button>
+    <div class="navbar-right">
+        <div class="dropdown" style="float:right;">
+            <button class="dropbtn-nopadding">
+                <img src="~/WorkflowDiagram/images/user-nav-box.png" alt="">
+            </button>
+            <div class="dropdown-content">
+                <a href="#">會員中心</a>
+                <a href="#">登出</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- nav bar - End -->
+
+<!-- 左邊開始 -->
+<!-- Icon 按鈕，使用外部圖片作為圖標 -->
+<div class="icon-button-left" id="icon-button-left">
+    <img src="~/WorkflowDiagram/images/list.png" alt="icon"> <!-- 使用圖片作為icon -->
+</div>
+
+<!-- 左邊-表單，初始狀態下隱藏 -->
+<div class="form-container-left" id="form-container-left">
+
+
+    <div class="title-box">
+        <div class="title-img">
+            <img src="~/WorkflowDiagram/images/list.png" alt="list icon">
+            <p class="purple-title-p">工作流程設定</p>
+        </div>
+        <div class="close-button-left" id="close-form-button-left">
+            <img src="~/WorkflowDiagram/images/left-fold.png" alt="close"> <!-- 關閉按鈕的icon -->
+        </div>
+    </div>
+    <div class="scrollerbar-straignt">
+    <div class="form-group">
+        <label class="text-label">*工作流程名稱</label>
+        <input type="text" placeholder="範例: 前端工程師的每日工作流程">
+    </div>
+
+        <div class="form-group">
+            <label class="text-label">職業 :</label>
+            <button onclick="document.getElementById('id01').style.display='block'"
+                    class="select-modal-button">
+                選擇職業
+            </button>
+        </div>
+
+        <div class="form-group">
+            <label class="text-label">行業 :</label>
+            <button onclick="document.getElementById('id02').style.display='block'"
+                    class="select-modal-button">
+                選擇行業
+            </button>
+        </div>
+
+    <div class="form-group">
+        <label class="text-label">公司規模</label>
+        <select class="select-commond">
+            <option>請選擇</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="text-label">所屬部門</label>
+        <input type="text">
+    </div>
+
+    <div class="form-group">
+        <label class="text-label">服務對象</label>
+        <input type="text" placeholder="範例: 客戶">
+    </div>
+
+    <div class="form-group">
+        <label class="text-label">營運模式</label>
+        <input type="text" placeholder="範例: 接案型">
+    </div>
+
+    <div class="form-group">
+        <label class="text-label">分享權限</label>
+        <select class="select-commond">
+            <option>請選擇</option>
+        </select>
+    </div>
+
+        <div class="form-group">
+            <label class="text-label">檔案狀態</label>
+            <select class="select-commond">
+                <option>請選擇</option>
+            </select>
+        </div>
+
+    <button type="button" class="navbar-button" id="download-button">
+        <img src="~/WorkflowDiagram/images/downloadPng.png" alt="downloadPng">
+        <span>下載流程圖圖檔</span>
+    </button>
+    </div>
+    <!-- 滾動區域 結束 -->
+    <!-- 更新時間 開始 -->
+    <div>
+        <hr>
+        <span>
+            會員上次更新時間 : 2023/06/27 09:37:22
+        </span>
+    </div>
+    <!-- 更新時間 結束 -->
+</div>
+<!-- 左邊結束 -->
+<!-- 職業Modal 開始-->
+<div id="id01" class="w3-modal" style="z-index: 22">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom"
+         style="max-width:600px; padding: 16px; background-color:#F7F2FA;border-radius: 16px;">
+
+        <div class="w3-center">
+            <br>
+            <span onclick="document.getElementById('id01').style.display='none'"
+                  class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+                  title="Close Modal">&times;</span>
+            <h2>選擇職業</h2>
+        </div>
+        <form class="w3-center" action="/action_page.php">
+            <div style="padding: 16px">
+                <div class="form-group" style="padding-bottom: 16px;">
+                    <label class="text-label">職業種類</label>
+                    <select class="select-commond">
+                        <option>請選擇</option>
+                    </select>
+                </div>
+                <div class="form-group" style="padding-bottom: 16px;">
+                    <label class="text-label">職業細項</label>
+                    <select class="select-commond">
+                        <option>請選擇</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="text-label">職業</label>
+                    <select class="select-commond">
+                        <option>請選擇</option>
+                    </select>
+                </div>
+            </div>
+            <button class="modal-button" type="submit">確定</button>
+        </form>
+
+    </div>
+</div>
+<!-- 職業Modal 結束-->
+<!-- 行業Modal 開始-->
+<div id="id02" class="w3-modal" style="z-index: 22">
+    <div class="w3-modal-content w3-card-4 w3-animate-zoom"
+         style="max-width:600px; padding: 16px; background-color:#F7F2FA;border-radius: 16px;">
+
+        <div class="w3-center">
+            <br>
+            <span onclick="document.getElementById('id02').style.display='none'"
+                  class="w3-button w3-xlarge w3-hover-red w3-display-topright"
+                  title="Close Modal">&times;</span>
+            <h2>選擇行業</h2>
+        </div>
+        <form class="w3-center" action="/action_page.php">
+            <div style="padding: 16px">
+                <div class="form-group" style="padding-bottom: 16px;">
+                    <label class="text-label">行業種類</label>
+                    <select class="select-commond">
+                        <option>請選擇</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="text-label">行業</label>
+                    <select class="select-commond">
+                        <option>請選擇</option>
+                    </select>
+                </div>
+            </div>
+            <button class="modal-button" type="submit">確定</button>
+        </form>
+
+    </div>
+</div>
+<!-- 行業Modal 結束-->
+<!-- ============================= -->
+<!-- 右邊開始 -->
+<!-- 右邊 Icon 按鈕，使用外部圖片作為圖標 -->
+<div class="icon-button-right" id="icon-button-right">
+    <img src="~/WorkflowDiagram/images/edit.png" alt="icon"> <!-- 使用圖片作為icon -->
+</div>
+<!-- 右邊-表單，初始狀態下隱藏 -->
+<div class="form-container-right" id="form-container-right">
+    <div class="title-box">
+        <div class="title-img">
+            <img src="~/WorkflowDiagram/images/edit.png" alt="edit icon">
+            <p class="purple-title-p">工作流程說明、附件上傳</p>
+        </div>
+        <div class="close-button-right" id="close-form-button-right">
+            <img src="~/WorkflowDiagram/images/right-fold.png" alt="close"> <!-- 關閉按鈕的icon -->
+        </div>
+    </div>
+    <div class="scrollerbar-straignt">
+        <div class="form-group">
+            <label class="text-label">工作流程說明</label>
+            <textarea placeholder="請輸入此份工作流程文件的說明" maxlength="3000" class="textarea-description"></textarea>
+        </div>
+
+        <!-- 附件上傳-開始 -->
+        <div class="form-group">
+            <div class="upload-container">
+                <label for="file-upload" class="upload-btn">附件上傳</label>
+                <input type="file" id="file-upload" multiple accept=".doc,.docx,.pdf,.xls,.xlsx,.ppt,.pptx,.jpg,.jpeg,.png" style="display: none;">
+                <span class="file-type-info">(word、pdf、excel、ppt、jpg、png)</span>
+            </div>
+            <div class="file-list">
+                <!-- 這裡會動態生成附件列表 -->
+            </div>
+        </div>
+        <!-- 附件上傳-結束 -->
+    </div>
+</div>
+<!-- 右邊結束 -->
+

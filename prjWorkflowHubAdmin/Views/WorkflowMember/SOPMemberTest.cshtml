@@ -1,0 +1,39 @@
+﻿<!-- 修改按鈕名稱和觸發的函數名 -->
+<button class="btn btn-primary" onclick="getMemberById()">查詢會員</button>
+
+<!-- 修改輸入框的標籤名稱和 ID -->
+<div class="container">
+    <div class="mb-3">
+        <label class="form-label">MemberId</label>
+        <input class="form-control" id="memberId" type="text" />
+    </div>
+</div>
+
+<!-- 定義 Script 區塊 -->
+@section Scripts
+{
+    <script>
+        // 基本的 API 位址，保持不變
+        var baseAddress = "https://localhost:7146";//記得要改Sever端的地址
+
+        // 修改函數名，改為查詢會員資料
+        async function getMemberById() {
+            // 取得輸入框中的會員 ID
+            var memberId = $("#memberId").val();
+
+            // 發送 GET 請求到 TMembers API
+            var response = await fetch(`${baseAddress}/api/TMembers/${memberId}`, {
+                method: "GET"
+            });
+
+            // 如果請求成功，將返回的資料顯示在 alert 中
+            if (response.ok) {
+                var data = await response.json();
+                alert(JSON.stringify(data));  // 顯示 JSON 格式的會員資料
+            } else {
+                // 如果查詢失敗，顯示錯誤訊息
+                alert("查詢失敗，請確認會員 ID 是否正確。");
+            }
+        }
+    </script>
+}

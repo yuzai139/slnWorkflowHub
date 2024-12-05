@@ -1,0 +1,146 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "SOPMarketContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "ContextModels",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "prjWorkflowHubAdmin",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[tArticle]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tCategory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tCompanySize]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tLecture]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tLectureRecord]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tLike]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tMember]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tMemberBankAccount]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tMessage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tOrder]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tOrderDetails]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tPointRecord]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tPublisher]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tReply]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tShare]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tShoppingCart ]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSop]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopAffix]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopIndustry]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopIndustryClass]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopItem]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopJob]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopJobClass]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopJobItem]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSopProduct]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[tSubscription]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false
+}

@@ -1,0 +1,85 @@
+﻿@model prjWorkflowHubAdmin.ViewModels.Workflow.CMemberSOPListBoxViewModel
+@{
+    <!--網頁標題-->
+    ViewData["Title"] = "會員工作流程管理";
+}
+<!--內容頁開始處-->
+<!--新增工作流程 - MVC Core-->
+<button type="button" class="btn btn-primary me-2" style="position:fixed; right:24px ; bottom:36px; z-index:1000"
+        onclick="location.href='@Url.Action("SopMemberCreateAndEdit", "WorkflowMember", new { memberId = Model.MemberId, memberName = Model.MemberName})'">
+    <span class="tf-icons bx bxs-file-plus bx-18px me-2"></span> 新增工作流程
+</button>
+
+
+
+<!--回上一步-->
+<h2 style="text-align: center">會員工作流程管理</h2>
+@Html.ActionLink("回上一步", "WorkflowMemberIndex", "WorkflowMember", null, new { @class = "btn btn-text-secondary" })
+<!--進度條-->
+<div class="progress" style="height: 45px;">
+    <div class="progress-bar bg-secondary" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+        <p style="font-size:20px; margin:0">步驟2 : 查詢工作流程</p>
+    </div>
+</div>
+<div style="display: flex; justify-content: space-between ; margin:24px 0 0 0">
+    <!-- 會員名稱 -->
+    <h4 style="color:#8592A3; margin: 0;">
+        @Model.MemberName 的工作流程
+    </h4>
+
+<!-- 查詢關鍵字 -->
+    @using (Html.BeginForm())
+    {
+        <div class="input-group mb-4" style="width: 500px">
+        @Html.TextBox("txtKeyword", null, new { @class = "form-control", @id = "defaultInput" })
+            <input type="submit" value="查詢工作流程名稱" class="btn btn-secondary " />   <!-- 提交查詢 -->
+    </div>
+    }
+</div>
+<!-- 表格 -->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>序號</th>
+            <th>@Html.DisplayNameFor(model => model.MemberSOPList.First().FSopName)</th>
+            <th>@Html.DisplayNameFor(model => model.MemberSOPList.First().FIndustryId)</th>
+            <th>@Html.DisplayNameFor(model => model.MemberSOPList.First().FJobItemId)</th>
+            <th>@Html.DisplayNameFor(model => model.MemberSOPList.First().FFileStatus)</th>
+            <th></th> <!-- 編輯按鈕 -->
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.MemberSOPList != null && Model.MemberSOPList.Any())
+        {
+            int count = 0;  // 序號從 0 開始，然後逐行遞增
+            foreach (var item in Model.MemberSOPList)
+            {
+                count++;
+                <!-- 每一行顯示 SOP 的序號、名稱、行業、工作項目和文件狀態 -->
+                <tr>
+                    <td>@count</td>
+                    <td>@Html.DisplayFor(modelItem => item.FSopName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FIndustryId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FJobItemId)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FFileStatus)</td>
+                    <td>
+                        @Html.ActionLink("編輯", "SopMemberEdit", "WorkflowMember",
+                                 new { Sopid = item.FSopid, memberId = item.FMemberId, memberName = Model.MemberName },
+                                        new { @class = "btn btn-outline-primary" })
+                        @Html.ActionLink("刪除", "MemberSopDelete", "WorkflowMember",
+                                 new { Sopid = item.FSopid, memberId = item.FMemberId, memberName = Model.MemberName },
+                                 new { @class = "btn btn-outline-danger", onclick = "return confirm('確定要刪除嗎？')" })
+
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6" class="text-center">沒有找到工作流程資料。</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
